@@ -1,17 +1,17 @@
 var express = require('express')
-var path = require("path");
 var app = express();
-var request = require('request')
-var mongo = require('mongodb').MongoClient;
+var multer  = require('multer')
+var upload = multer();
 
 
-app.get('/imagesearch', function(req, res) {
-  
+app.get('/filemetadata', function(req, res) {
+  res.sendFile('/home/ubuntu/workspace/filemetadata/hello.html')
 })
 
+app.post('/filemetadata/upload', upload.single('file'), function (req, res, next) {
+  res.json({"size": req.file.size})
 
-//api-key AIzaSyDoWMgf_idhENTMBQt-cT0T0PapDXUzzKo
-
+})
 
 app.listen(8080, function () {
   console.log('Example app listening on port 8080!');
